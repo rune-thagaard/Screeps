@@ -1,20 +1,3 @@
-// TODO //
-/*
------------------------------------------------------------------------------------------------------------------------------------------------
-- Dynamicly find the container at the harvester place rather than assisning it by ID.
------------------------------------------------------------------------------------------------------------------------------------------------
-- Automaticly build a container.
--   Count blocks which are accessible on the side of the energy node. This will define how many harvesters can be present at the same time.
--   Should be max 2 harvester even if more blocks are accessible.
--   If block are beside each other put the container behind the on the oppesite site of the energy node.
--   If blocks are not beside each other, just put it behind on of them, on the opposite site of the energy node.
-- Build/Rebuild container if it dosen't excists
--   Would need to make harvesters automaticly build container, if it dosen't excist.
------------------------------------------------------------------------------------------------------------------------------------------------
-- Make harvester container method for upgraders (role.upgraderHarvester)
------------------------------------------------------------------------------------------------------------------------------------------------
-*/
-
 var numberOfHarvesters = 1;
 var numberOfUpgradeHarvesters = 1;
 var numberOfMineralHarvester = 1;
