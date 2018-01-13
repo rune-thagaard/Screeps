@@ -11,6 +11,7 @@ var doRenewCreeps = false;
 
 var spawner = require('spawner');
 var roleHarvester = require('role.harvester');
+/*
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleSpawnFeeder = require('role.spawnFeeder');
@@ -22,7 +23,7 @@ var roleMineralHarvester = require('role.mineralHarvester');
 
 var mineralStorage = Game.getObjectById('ff962531c42d6df');
 var mineralSource1 = Game.getObjectById('96cb6164de3316e');
-
+*/
 module.exports.loop = function () {
 
     
@@ -97,6 +98,7 @@ module.exports.loop = function () {
         
             switch (creep.memory.role) {
                 case 'harvester':
+                    /*
                     roleHarvester.run(creep);
                     break;
                 case 'upgrader':
@@ -119,15 +121,15 @@ module.exports.loop = function () {
                     break;
                 case 'mineralHarvester':
                     roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
-                    break;
+                    break;*/
             }
         
         }
         
     }
     
-    roleTower.run();
-    roleUpgraderLink.run();
+    //roleTower.run();
+    //roleUpgraderLink.run();
     
 }
 

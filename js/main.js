@@ -9,6 +9,7 @@ var doBuildConstructionSites = true;
 var doRenewCreeps = false;
 var spawner = require('spawner');
 var roleHarvester = require('role.harvester');
+/*
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleSpawnFeeder = require('role.spawnFeeder');
@@ -17,8 +18,10 @@ var roleUpgradeHarvester = require('role.upgradeHarvester');
 var roleUpgraderLink = require('role.upgraderLink');
 var roleSorceKeeperAttacker = require('role.sorceKeeperAttacker');
 var roleMineralHarvester = require('role.mineralHarvester');
+
 var mineralStorage = Game.getObjectById('ff962531c42d6df');
 var mineralSource1 = Game.getObjectById('96cb6164de3316e');
+*/
 module.exports.loop = function () {
     /*var controllerTarget = Game.getObjectById('55db345befa8e3fe66e05d8b');
     
@@ -79,34 +82,11 @@ module.exports.loop = function () {
         else {
             switch (creep.memory.role) {
                 case 'harvester':
-                    roleHarvester.run(creep);
-                    break;
-                case 'upgrader':
-                    roleUpgrader.run(creep);
-                    break;
-                case 'builder':
-                    roleBuilder.run(creep, doBuildConstructionSites);
-                    break;
-                case 'repairer':
-                    roleRepairer.run(creep);
-                    break;
-                case 'spawnFeeder':
-                    roleSpawnFeeder.run(creep);
-                    break;
-                case 'dismantler':
-                    roleDismantler.run(creep);
-                    break;
-                case 'upgradeHarvester':
-                    roleUpgradeHarvester.run(creep);
-                    break;
-                case 'mineralHarvester':
-                    roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
-                    break;
             }
         }
     }
-    roleTower.run();
-    roleUpgraderLink.run();
+    //roleTower.run();
+    //roleUpgraderLink.run();
 };
 // Memory.energyContainers = Memory.energyContainers + ',5788ea501886f8121bfa107b';
 // Game.spawns.Spawn1.createCreep([ATTACK,ATTACK,ATTACK,ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH]);
