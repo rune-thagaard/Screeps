@@ -1,6 +1,6 @@
 var spawner = {
     renewCreepsInRange: function () {
-        var spawn = Game.spawns.Spawn1;
+        var spawn = Game.spawns['MainBase'];
         var creepsToRenew = spawn.pos.findInRange(FIND_MY_CREEPS, 1, {
             filter: function (creep) {
                 return creep.memory.needHealing == true;
@@ -42,54 +42,54 @@ var spawner = {
     @param string type (harvester,builder,upgrader,repairer)
     **/
     spawn: function (creepRole) {
-        var extensions = Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES, {
+        var extensions = Game.spawns['MainBase'].room.find(FIND_MY_STRUCTURES, {
             filter: { structureType: STRUCTURE_EXTENSION }
         });
         var numberOfExtensions = extensions.length;
         var newCreepName = '';
         if (numberOfExtensions >= 0 && numberOfExtensions < 5)
-            newCreepName = Game.spawns.Spawn1.createCreep([WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
+            newCreepName = Game.spawns['MainBase'].createCreep([WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
         else if (numberOfExtensions >= 5 && numberOfExtensions < 10)
-            newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
+            newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
         else if (numberOfExtensions >= 10 && numberOfExtensions < 20) {
             if (creepRole == 'harvester' || creepRole == 'upgradeHarvester')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'spawnFeeder')
-                newCreepName = Game.spawns.Spawn1.createCreep([CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], undefined, { role: creepRole });
         }
         else if (numberOfExtensions >= 20 && numberOfExtensions < 30) {
             if (creepRole == 'harvester' || creepRole == 'upgradeHarvester')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'spawnFeeder')
-                newCreepName = Game.spawns.Spawn1.createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'upgrader')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
             else
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
         }
         else if (numberOfExtensions >= 30 && numberOfExtensions < 40) {
             if (creepRole == 'harvester' || creepRole == 'upgradeHarvester')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'spawnFeeder')
-                newCreepName = Game.spawns.Spawn1.createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'upgrader')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
         }
         else if (numberOfExtensions >= 40 && numberOfExtensions < 50) {
             // Need to make adjustments due to more extensions
             // This is just a copy from above
             if (creepRole == 'harvester' || creepRole == 'upgradeHarvester')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'spawnFeeder')
-                newCreepName = Game.spawns.Spawn1.createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else if (creepRole == 'upgrader')
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
             else
-                newCreepName = Game.spawns.Spawn1.createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], undefined, { role: creepRole });
         }
         if (newCreepName == OK) {
             console.log('New creep: ' + newCreepName + " spawned with role: " + creepRole);
