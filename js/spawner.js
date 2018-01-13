@@ -48,9 +48,9 @@ var spawner = {
         var numberOfExtensions = extensions.length;
         var newCreepName = '';
         if (numberOfExtensions >= 0 && numberOfExtensions < 5)
-            newCreepName = Game.spawns['MainBase'].createCreep([WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
+            newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, CARRY, CARRY, MOVE], undefined, { role: creepRole });
         else if (numberOfExtensions >= 5 && numberOfExtensions < 10)
-            newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: creepRole });
+            newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE], undefined, { role: creepRole });
         else if (numberOfExtensions >= 10 && numberOfExtensions < 20) {
             if (creepRole == 'harvester' || creepRole == 'upgradeHarvester')
                 newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE], undefined, { role: creepRole });

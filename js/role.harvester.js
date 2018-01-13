@@ -1,6 +1,6 @@
 var roleBuilder = require('role.builder');
-var harvesterSource = "1d190775111f525";
-var harvesterDestination = "5b662f1ee3b1a96";
+var harvesterSource = "59f1a60c82100e1594f3f6e4";
+var harvesterDestination = "5a59e73d4df4166fbf201cfe";
 var roleHarvester = {
     /** @param {Creep} creep **/
     run: function (creep) {
