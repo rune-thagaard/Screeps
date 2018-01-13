@@ -1,9 +1,9 @@
 var numberOfHarvesters = 1;
-var numberOfUpgradeHarvesters = 1;
+var numberOfUpgradeHarvesters = 2;
 var numberOfMineralHarvester = 0;
 var numberOfSpawnFeeders = 0;
 var numberOfUpgraders = 0;
-var numberOfBuilders = 1;
+var numberOfBuilders = 0;
 var numberOfRoomClaimers = 0;
 
 var doBuildConstructionSites = true;
@@ -14,11 +14,10 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleUpgradeHarvester = require('role.upgradeHarvester');
 var roleBuilder = require('role.builder');
+var roleSpawnFeeder = require('role.spawnFeeder');
 
 /*
-var roleSpawnFeeder = require('role.spawnFeeder');
 var roleTower = require('role.tower');
-
 var roleUpgraderLink = require('role.upgraderLink');
 var roleSorceKeeperAttacker = require('role.sorceKeeperAttacker');
 var roleMineralHarvester = require('role.mineralHarvester');
@@ -111,13 +110,14 @@ module.exports.loop = function () {
             case 'builder':
                 roleBuilder.run(creep, doBuildConstructionSites);
                 break;
+            case 'spawnFeeder':
+                roleSpawnFeeder.run(creep);
+                break;
                 /*
             case 'repairer':
                 roleRepairer.run(creep);
                 break;
-            case 'spawnFeeder':
-                roleSpawnFeeder.run(creep);
-                break;
+
             case 'dismantler':
                 roleDismantler.run(creep);
                 break;
