@@ -11,12 +11,15 @@ var doRenewCreeps = false;
 
 var spawner = require('spawner');
 var roleHarvester = require('role.harvester');
-/*
 var roleUpgrader = require('role.upgrader');
+var roleUpgradeHarvester = require('role.upgradeHarvester');
+
+/*
+
 var roleBuilder = require('role.builder');
 var roleSpawnFeeder = require('role.spawnFeeder');
 var roleTower = require('role.tower');
-var roleUpgradeHarvester = require('role.upgradeHarvester');
+
 var roleUpgraderLink = require('role.upgraderLink');
 var roleSorceKeeperAttacker = require('role.sorceKeeperAttacker');
 var roleMineralHarvester = require('role.mineralHarvester');
@@ -100,10 +103,13 @@ module.exports.loop = function () {
                 case 'harvester':
                     roleHarvester.run(creep);
                     break;
-                /*
             case 'upgrader':
                 roleUpgrader.run(creep);
                 break;
+            case 'upgradeHarvester':
+                roleUpgradeHarvester.run(creep);
+                break;
+                /*
             case 'builder':
                 roleBuilder.run(creep, doBuildConstructionSites);
                 break;
@@ -116,9 +122,7 @@ module.exports.loop = function () {
             case 'dismantler':
                 roleDismantler.run(creep);
                 break;
-            case 'upgradeHarvester':
-                roleUpgradeHarvester.run(creep);
-                break;
+
             case 'mineralHarvester':
                 roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
                 break;*/

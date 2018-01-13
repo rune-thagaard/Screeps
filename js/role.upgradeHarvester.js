@@ -1,5 +1,5 @@
-var upgraderHarvesterSource = "504d0775111fdb7";
-var upgraderHarvesterDestination = "027b33b340b294c";
+var upgraderHarvesterSource = "59f1a60c82100e1594f3f6e5";
+var upgraderHarvesterDestination = "59f1a60c82100e1594f3f6e6";
 var roleUpgradeHarvester = {
     /** @param {Creep} creep **/
     run: function (creep) {
