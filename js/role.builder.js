@@ -55,26 +55,20 @@ var roleBuilder = {
             }
         }
         else {
-            /*
             // Repair structures
-            if(!creep.memory.building && creep.carry.energy > 0) {
+            if (!creep.memory.building && creep.carry.energy > 0) {
                 creep.memory.building = true;
             }
-    
-            if(creep.memory.building && creep.carry.energy == 0) {
+            if (creep.memory.building && creep.carry.energy == 0) {
                 creep.memory.building = false;
             }
-            
             if (creep.memory.building) {
-                
                 var targets = creep.room.find(FIND_STRUCTURES);
                 var i = 0;
                 var targetFound = false;
                 var targetStructureToRepair = null;
-                
                 while (!targetFound && i < targets.length) {
-                    if ((targets[i].structureType == STRUCTURE_ROAD && targets[i].hits < 5000) || (targets[i].structureType == STRUCTURE_CONTAINER && targets[i].hits < 250000))
-                    {
+                    if ((targets[i].structureType == STRUCTURE_ROAD && targets[i].hits < 5000) || (targets[i].structureType == STRUCTURE_CONTAINER && targets[i].hits < 250000)) {
                         targetStructureToRepair = targets[i];
                         targetFound = true;
                     }
@@ -82,25 +76,20 @@ var roleBuilder = {
                 }
                 if (targetFound) {
                     var result = creep.repair(targetStructureToRepair);
-                    
-                    if(result == ERR_NOT_IN_RANGE) {
+                    if (result == ERR_NOT_IN_RANGE) {
                         creep.moveTo(targetStructureToRepair);
                     }
-                    
                 }
             }
-            else
-            {
+            else {
                 var container = Game.getObjectById(builderSource);
-                
                 var attemptTransfer = creep.withdraw(container, RESOURCE_ENERGY, creep.carryCapacity);
-                        
-                if(attemptTransfer == ERR_NOT_IN_RANGE) {
+                if (attemptTransfer == ERR_NOT_IN_RANGE) {
                     creep.moveTo(container);
-                } else if (attemptTransfer == ERR_NOT_ENOUGH_RESOURCES)
+                }
+                else if (attemptTransfer == ERR_NOT_ENOUGH_RESOURCES)
                     creep.withdraw(container, RESOURCE_ENERGY, container.store[RESOURCE_ENERGY]);
             }
-            */
         }
     }
 };

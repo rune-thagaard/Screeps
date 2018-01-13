@@ -1,11 +1,11 @@
 var numberOfHarvesters = 1;
-var numberOfUpgradeHarvesters = 2;
+var numberOfUpgradeHarvesters = 3;
 var numberOfMineralHarvester = 0;
 var numberOfSpawnFeeders = 0;
 var numberOfUpgraders = 0;
 var numberOfBuilders = 0;
 var numberOfRoomClaimers = 0;
-var doBuildConstructionSites = true;
+var doBuildConstructionSites = false;
 var doRenewCreeps = false;
 var spawner = require('spawner');
 var roleHarvester = require('role.harvester');
@@ -68,8 +68,10 @@ module.exports.loop = function () {
     for(var name in Game.rooms)
         console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
     */
-    if (Game.rooms.length == 1)
-        Game.spawns.Spawn1.createCreep([WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: "spawnFeeder" });
+    /*
+    if (Game.rooms.length == 0)
+        Game.spawns.Spawn1.createCreep([WORK,CARRY,CARRY,MOVE,MOVE], undefined, {role: "spawnFeeder"});
+    */
     // Command creeps
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -96,6 +98,16 @@ module.exports.loop = function () {
                 case 'spawnFeeder':
                     roleSpawnFeeder.run(creep);
                     break;
+                case 'repairer':
+                    roleRepairer.run(creep);
+                    break;
+                case 'dismantler':
+                    roleDismantler.run(creep);
+                    break;
+                case 'mineralHarvester':
+                    roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
+                    break;
+                     * /;
             }
         }
     }

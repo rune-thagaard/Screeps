@@ -65,7 +65,7 @@ var roleBuilder = {
             
         } else {
             
-            /*
+
             // Repair structures
             if(!creep.memory.building && creep.carry.energy > 0) {
     	        creep.memory.building = true;
@@ -110,7 +110,7 @@ var roleBuilder = {
                 } else if (attemptTransfer == ERR_NOT_ENOUGH_RESOURCES)
                     creep.withdraw(container, RESOURCE_ENERGY, container.store[RESOURCE_ENERGY]);
     	    }
-            */
+
         }
 	    
 	}
