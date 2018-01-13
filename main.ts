@@ -79,7 +79,7 @@ module.exports.loop = function () {
         console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
     */
     
-    if (Game.rooms.length == 0) 
+    if (Game.rooms.length == 1)
         Game.spawns.Spawn1.createCreep([WORK,CARRY,CARRY,MOVE,MOVE], undefined, {role: "spawnFeeder"});
     
     // Command creeps
@@ -98,30 +98,30 @@ module.exports.loop = function () {
         
             switch (creep.memory.role) {
                 case 'harvester':
-                    /*
                     roleHarvester.run(creep);
                     break;
-                case 'upgrader':
-                    roleUpgrader.run(creep);
-                    break;
-                case 'builder':
-                    roleBuilder.run(creep, doBuildConstructionSites);
-                    break;
-                case 'repairer':
-                    roleRepairer.run(creep);
-                    break;
-                case 'spawnFeeder':
-                    roleSpawnFeeder.run(creep);
-                    break;
-                case 'dismantler':
-                    roleDismantler.run(creep);
-                    break;
-                case 'upgradeHarvester':
-                    roleUpgradeHarvester.run(creep);
-                    break;
-                case 'mineralHarvester':
-                    roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
-                    break;*/
+                /*
+            case 'upgrader':
+                roleUpgrader.run(creep);
+                break;
+            case 'builder':
+                roleBuilder.run(creep, doBuildConstructionSites);
+                break;
+            case 'repairer':
+                roleRepairer.run(creep);
+                break;
+            case 'spawnFeeder':
+                roleSpawnFeeder.run(creep);
+                break;
+            case 'dismantler':
+                roleDismantler.run(creep);
+                break;
+            case 'upgradeHarvester':
+                roleUpgradeHarvester.run(creep);
+                break;
+            case 'mineralHarvester':
+                roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
+                break;*/
             }
         
         }

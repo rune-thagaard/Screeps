@@ -68,7 +68,7 @@ module.exports.loop = function () {
     for(var name in Game.rooms)
         console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
     */
-    if (Game.rooms.length == 0)
+    if (Game.rooms.length == 1)
         Game.spawns.Spawn1.createCreep([WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: "spawnFeeder" });
     // Command creeps
     for (var name in Game.creeps) {
@@ -82,6 +82,8 @@ module.exports.loop = function () {
         else {
             switch (creep.memory.role) {
                 case 'harvester':
+                    roleHarvester.run(creep);
+                    break;
             }
         }
     }
