@@ -1,12 +1,10 @@
+
 var numberOfHarvesters = 1;
 var numberOfUpgradeHarvesters = 1;
 var numberOfMineralHarvester = 1;
-
 var numberOfSpawnFeeders = 2;
-
 var numberOfUpgraders = 1;
 var numberOfBuilders = 1;
-
 var numberOfRoomClaimers = 1;
 
 var doBuildConstructionSites = true;
