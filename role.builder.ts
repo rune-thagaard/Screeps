@@ -1,6 +1,6 @@
 var roleTowerFeeder = require('role.towerFeeder');
 
-var builderSource = "fde480b7fc7b52d";
+var builderSource = "5a59e73d4df4166fbf201cfe";
 
 var roleBuilder = {
 
