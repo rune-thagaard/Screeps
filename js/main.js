@@ -11,20 +11,15 @@ var numberOfRoomClaimers = 0;
 var doBuildConstructionSites = true;
 var doRenewCreeps = false;
 var spawner = require('spawner');
-var roleUpgrader = require('role.upgrader');
-var roleUpgradeHarvester = require('role.upgradeHarvester');
-var roleBuilder = require('role.builder');
-var roleSpawnFeeder = require('role.spawnFeeder');
 var harvesterSource = Game.getObjectById("59f1a60c82100e1594f3f6e4");
 var harvesterDestination = Game.getObjectById("5a5a44db111a065fc1c92308");
+var upgraderHarvesterSource = Game.getObjectById("59f1a60c82100e1594f3f6e5");
+var upgraderHarvesterDestination = Game.getObjectById("59f1a60c82100e1594f3f6e6");
+var mineralStorage;
+var mineralSource1;
 /*
 var roleTower = require('role.tower');
-var roleUpgraderLink = require('role.upgraderLink');
 var roleSorceKeeperAttacker = require('role.sorceKeeperAttacker');
-var roleMineralHarvester = require('role.mineralHarvester');
-
-var mineralStorage = Game.getObjectById('ff962531c42d6df');
-var mineralSource1 = Game.getObjectById('96cb6164de3316e');
 */
 module.exports.loop = function () {
     /*var controllerTarget = Game.getObjectById('55db345befa8e3fe66e05d8b');
@@ -92,19 +87,25 @@ module.exports.loop = function () {
                     creeper.harvest(harvesterSource, harvesterDestination);
                     break;
                 case 'upgrader':
-                    roleUpgrader.run(creep);
+                    creeper.upgrade(harvesterDestination);
                     break;
                 case 'upgradeHarvester':
-                    roleUpgradeHarvester.run(creep);
+                    creeper.harvest(upgraderHarvesterSource, upgraderHarvesterDestination);
                     break;
                 case 'builder':
                     creeper.build(doBuildConstructionSites, harvesterDestination);
                     break;
                 case 'spawnFeeder':
-                    roleSpawnFeeder.run(creep);
+                    creeper.feedSpawns(harvesterDestination);
                     break;
                 case 'repairer':
-                    roleRepairer.run(creep);
+                    creeper.repair(harvesterDestination);
+                    break;
+                case 'dismantler':
+                    creeper.dismantle(harvesterDestination);
+                    break;
+                case 'mineralHarvester':
+                    creeper.mineralHarvest(mineralSource1, mineralStorage);
                     break;
             }
         }

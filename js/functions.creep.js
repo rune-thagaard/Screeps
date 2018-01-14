@@ -26,9 +26,10 @@ module.exports = {
             case ERR_BUSY: // -4 The creep is still being spawned.
             case ERR_NOT_ENOUGH_RESOURCES: // -6 The creep does not have the given amount of resources.
             case ERR_INVALID_TARGET: // -7 The target is not a valid object which can contain the specified resource.
-            case ERR_FULL: // -8 The target cannot receive any more resources.
             case ERR_INVALID_ARGS:// -10 The resources amount is incorrect.
                 Game.notify("TransferResource failed with following result: " + result + " - Target: " + target.id);
+                break;
+            case ERR_FULL:// -8 The target cannot receive any more resources.
                 break;
         }
         return result;
