@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Creeper = require("./Creeper");
 var SpawnHandler = require("./SpawnHandler");
+var TowerHandler = require("./TowerHandler");
 var SpawnController = new SpawnHandler(1, 0, 1, 0, 3, 0);
+var TowerController = new TowerHandler();
 var doBuildConstructionSites = true;
 var doRenewCreeps = false;
 var harvesterSource = Game.getObjectById("59f1a60c82100e1594f3f6e4");
@@ -89,7 +91,7 @@ module.exports.loop = function () {
                     creeper.build(doBuildConstructionSites, harvesterDestination);
                     break;
                 case 'spawnFeeder':
-                    creeper.feedSpawns(harvesterDestination);
+                    creeper.energyFeeder(harvesterDestination);
                     break;
                 case 'repairer':
                     creeper.repair(harvesterDestination);
@@ -103,7 +105,7 @@ module.exports.loop = function () {
             }
         }
     }
-    //roleTower.run();
+    TowerController.doWork();
     //roleUpgraderLink.run();
 };
 // Memory.energyContainers = Memory.energyContainers + ',5788ea501886f8121bfa107b';

@@ -1,6 +1,8 @@
 import Creeper = require('./Creeper');
 import SpawnHandler = require("./SpawnHandler");
+import TowerHandler = require("./TowerHandler");
 let SpawnController = new SpawnHandler(1, 0, 1, 0, 3, 0);
+let TowerController = new TowerHandler();
 
 var doBuildConstructionSites = true;
 var doRenewCreeps = false;
@@ -104,7 +106,7 @@ module.exports.loop = function () {
                     creeper.build(doBuildConstructionSites, harvesterDestination);
                     break;
                 case 'spawnFeeder':
-                    creeper.feedSpawns(harvesterDestination);
+                    creeper.energyFeeder(harvesterDestination);
                     break;
                 case 'repairer':
                     creeper.repair(harvesterDestination);
@@ -120,8 +122,8 @@ module.exports.loop = function () {
         }
         
     }
-    
-    //roleTower.run();
+
+    TowerController.doWork();
     //roleUpgraderLink.run();
     
 }

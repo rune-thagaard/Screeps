@@ -23,10 +23,10 @@ module.exports = /** @class */ (function () {
         return result;
     };
     Creeper.prototype.withdrawResource = function (target, resource) {
-        if (this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+        if (this.creep.withdraw(target, resource) == ERR_NOT_IN_RANGE)
             this.creep.moveTo(target);
     };
-    Creeper.prototype.feedSpawns = function (energySource) {
+    Creeper.prototype.energyFeeder = function (energySource) {
         // If creeps energy capacity is empty, get more energy
         if (this.creep.carry.energy == 0) {
             this.withdrawResource(energySource, RESOURCE_ENERGY);
@@ -42,6 +42,17 @@ module.exports = /** @class */ (function () {
             var result = this.transferResource(target, RESOURCE_ENERGY);
             if (result == OK)
                 this.creep.say("Transfered energy to spawn: " + result);
+            return;
+        }
+        // Check if any towers need energy
+        var towers = Game.spawns['MainBase'].room.find(FIND_STRUCTURES, {
+            filter: function (obj) {
+                return obj.structureType == STRUCTURE_TOWER && obj.energy < obj.energyCapacity;
+            }
+        });
+        if (towers.length > 0) {
+            this.transferResource(towers[0], RESOURCE_ENERGY);
+            return;
         }
     };
     Creeper.prototype.harvest = function (harvestSource, targetEnergyStorage) {
@@ -63,21 +74,22 @@ module.exports = /** @class */ (function () {
                 this.creep.moveTo(harvestSource);
     };
     Creeper.prototype.build = function (doBuildConstructionSites, energySource) {
-        if (!this.creep.memory['building'] && this.creep.carry.energy > 0) {
+        if (!this.creep.memory['building'] && this.creep.carry.energy > 0)
             this.creep.memory['building'] = true;
-        }
         if (this.creep.memory['building'] && this.creep.carry.energy == 0) {
             this.creep.memory['building'] = false;
         }
         var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
         if (this.creep.memory['building'] && targets.length && doBuildConstructionSites) {
+            // If creeps energy capacity is full, go build
+            if (this.creep.carry.energy > 0)
+                if (this.creep.build(targets[0]) == ERR_NOT_IN_RANGE)
+                    this.creep.moveTo(targets[0]);
+        }
+        else {
             // If creeps energy capacity is empty, get more energy
             if (this.creep.carry.energy < this.creep.carryCapacity)
                 this.withdrawResource(energySource, RESOURCE_ENERGY);
-            // If creeps energy capacity is full, go build
-            if (this.creep.carry.energy == this.creep.carryCapacity)
-                if (this.creep.build(targets[0]) == ERR_NOT_IN_RANGE)
-                    this.creep.moveTo(targets[0]);
         }
     };
     Creeper.prototype.repair = function (energySource) {

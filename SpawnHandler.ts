@@ -75,7 +75,9 @@ export = class SpawnHandler {
     spawn(creepRole) {
 
         var extensions = Game.spawns['MainBase'].room.find(FIND_MY_STRUCTURES, {
-            filter: { structureType: STRUCTURE_EXTENSION }
+            filter: function(obj) {
+                return obj.structureType == STRUCTURE_EXTENSION;
+            }
         });
 
         var numberOfExtensions = extensions.length;

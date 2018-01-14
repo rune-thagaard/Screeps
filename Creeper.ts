@@ -8,7 +8,7 @@ export = class Creeper {
 
     transferResource(target: Structure<StructureConstant>, resource: ResourceConstant)
     {
-        var result = this.creep.transfer(target, resource);
+        let result = this.creep.transfer(target, resource);
         switch (result) {
             case ERR_NOT_IN_RANGE: {
                 this.creep.moveTo(target);
@@ -29,11 +29,11 @@ export = class Creeper {
 
     withdrawResource(target: Structure, resource: ResourceConstant)
     {
-        if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+        if(this.creep.withdraw(target, resource) == ERR_NOT_IN_RANGE)
             this.creep.moveTo(target);
     }
 
-    feedSpawns(energySource: Structure)
+    energyFeeder(energySource: Structure)
     {
         // If creeps energy capacity is empty, get more energy
         if(this.creep.carry.energy == 0)
@@ -43,7 +43,7 @@ export = class Creeper {
         }
 
         // Find and fill spawn and extensions with energy
-        var target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
+        let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN ) && structure.energy < structure.energyCapacity;
             }
@@ -54,6 +54,21 @@ export = class Creeper {
 
             if (result == OK)
                 this.creep.say("Transfered energy to spawn: " + result);
+
+            return;
+        }
+
+        // Check if any towers need energy
+        let towers = Game.spawns['MainBase'].room.find(FIND_STRUCTURES, {
+            filter: function(obj) {
+                return obj.structureType == STRUCTURE_TOWER && obj.energy < obj.energyCapacity;
+            }
+        });
+
+        if (towers.length > 0)
+        {
+            this.transferResource(towers[0], RESOURCE_ENERGY);
+            return;
         }
     }
 
@@ -67,9 +82,9 @@ export = class Creeper {
         }
 
         // If any dropped energy is within range, pick it up.
-        var droppedEnergy = this.creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
+        let droppedEnergy: any = this.creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
         if (droppedEnergy.length > 0) {
-            var result = this.creep.pickup(droppedEnergy[0]);
+            let result = this.creep.pickup(droppedEnergy[0]);
             console.log("Picked up energy with result: "+ result);
             return;
         }
@@ -82,25 +97,25 @@ export = class Creeper {
 
     build(doBuildConstructionSites: boolean, energySource: Structure)
     {
-        if(!this.creep.memory['building'] && this.creep.carry.energy > 0) {
+        if (!this.creep.memory['building'] && this.creep.carry.energy > 0)
             this.creep.memory['building'] = true;
-        }
 
-        if(this.creep.memory['building'] && this.creep.carry.energy == 0) {
+        if (this.creep.memory['building'] && this.creep.carry.energy == 0) {
             this.creep.memory['building'] = false;
         }
 
-        var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
-        if(this.creep.memory['building'] && targets.length && doBuildConstructionSites) {
-
-            // If creeps energy capacity is empty, get more energy
-            if(this.creep.carry.energy < this.creep.carryCapacity)
-                this.withdrawResource(energySource, RESOURCE_ENERGY);
-
+        let targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
+        if (this.creep.memory['building'] && targets.length && doBuildConstructionSites) {
             // If creeps energy capacity is full, go build
-            if(this.creep.carry.energy == this.creep.carryCapacity)
+            if (this.creep.carry.energy > 0)
                 if (this.creep.build(targets[0]) == ERR_NOT_IN_RANGE)
                     this.creep.moveTo(targets[0]);
+        }
+        else
+        {
+            // If creeps energy capacity is empty, get more energy
+            if (this.creep.carry.energy < this.creep.carryCapacity)
+                this.withdrawResource(energySource, RESOURCE_ENERGY);
         }
     }
 
@@ -186,7 +201,7 @@ export = class Creeper {
             return;
         }
 
-        var response = this.creep.upgradeController(this.creep.room.controller);
+        let response = this.creep.upgradeController(this.creep.room.controller);
         if(response == ERR_NOT_IN_RANGE)
             this.creep.moveTo(this.creep.room.controller);
     }
