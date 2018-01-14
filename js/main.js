@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Creeper = require("Creeper");
 var numberOfHarvesters = 1;
 var numberOfUpgradeHarvesters = 3;
 var numberOfMineralHarvester = 0;
@@ -8,11 +11,12 @@ var numberOfRoomClaimers = 0;
 var doBuildConstructionSites = true;
 var doRenewCreeps = false;
 var spawner = require('spawner');
-var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleUpgradeHarvester = require('role.upgradeHarvester');
 var roleBuilder = require('role.builder');
 var roleSpawnFeeder = require('role.spawnFeeder');
+var harvesterSource = Game.getObjectById("59f1a60c82100e1594f3f6e4");
+var harvesterDestination = Game.getObjectById("5a5a44db111a065fc1c92308");
 /*
 var roleTower = require('role.tower');
 var roleUpgraderLink = require('role.upgraderLink');
@@ -82,9 +86,10 @@ module.exports.loop = function () {
         if (creep.memory.needHealing && doRenewCreeps)
             creep.moveTo(Game.spawns.Spawn1);
         else {
+            var creeper = new Creeper(creep);
             switch (creep.memory.role) {
                 case 'harvester':
-                    roleHarvester.run(creep);
+                    creeper.harvest(harvesterSource, harvesterDestination);
                     break;
                 case 'upgrader':
                     roleUpgrader.run(creep);
