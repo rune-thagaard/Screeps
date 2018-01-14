@@ -1,16 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Creeper = require("./Creeper");
-var numberOfHarvesters = 1;
-var numberOfUpgradeHarvesters = 3;
-var numberOfMineralHarvester = 0;
-var numberOfSpawnFeeders = 0;
-var numberOfUpgraders = 0;
-var numberOfBuilders = 1;
-var numberOfRoomClaimers = 0;
+var SpawnHandler = require("./SpawnHandler");
+var SpawnController = new SpawnHandler(1, 0, 1, 0, 3, 0);
 var doBuildConstructionSites = true;
 var doRenewCreeps = false;
-var spawner = require('spawner');
 var harvesterSource = Game.getObjectById("59f1a60c82100e1594f3f6e4");
 var harvesterDestination = Game.getObjectById("5a5a44db111a065fc1c92308");
 var upgraderHarvesterSource = Game.getObjectById("59f1a60c82100e1594f3f6e5");
@@ -56,12 +50,11 @@ module.exports.loop = function () {
         
     }
     */
-    // IMPORTANT: Always place this memory cleaning code at the very top of main loop
-    spawner.cleanDeadCreepsFromMemory();
-    if (!spawner.renewCreepsInRange()) {
-        var typeToSpawn = spawner.isSpawnRequired(numberOfHarvesters, numberOfUpgraders, numberOfBuilders, numberOfSpawnFeeders, numberOfUpgradeHarvesters, numberOfMineralHarvester);
+    SpawnController.cleanDeadCreepsFromMemory();
+    if (!SpawnController.renewCreepsInRange()) {
+        var typeToSpawn = SpawnController.isSpawnRequired();
         if (typeToSpawn != "")
-            spawner.spawn(typeToSpawn);
+            SpawnController.spawn(typeToSpawn);
     }
     /*
     for(var name in Game.rooms)
