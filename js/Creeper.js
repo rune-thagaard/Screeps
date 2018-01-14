@@ -1,4 +1,5 @@
-var Creeper = /** @class */ (function () {
+"use strict";
+module.exports = /** @class */ (function () {
     function Creeper(creep) {
         this.creep = creep;
     }

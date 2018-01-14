@@ -2,7 +2,7 @@ interface CreepMemory extends Creep {
     returnHarvest: boolean;
 }
 
-class Creeper {
+export = class Creeper {
     creep: Creep;
     role: string;
 
