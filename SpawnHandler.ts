@@ -88,9 +88,9 @@ export = class SpawnHandler {
             newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], undefined, {role: creepRole});
         else if (numberOfExtensions >= 10 && numberOfExtensions < 20) {
             if (creepRole == 'harvester' || creepRole == 'upgradeHarvester')
-                newCreepName = Game.spawns['MainBase'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE], undefined, {role: creepRole});
+                newCreepName = Game.spawns['MainBase'].createCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE], undefined, {role: creepRole});
             else if (creepRole == 'spawnFeeder')
-                newCreepName = Game.spawns['MainBase'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], undefined, {role: creepRole});
+                newCreepName = Game.spawns['MainBase'].createCreep([CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: creepRole});
             else
                 newCreepName = Game.spawns['MainBase'].createCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], undefined, {role: creepRole});
 
