@@ -5,7 +5,7 @@ var numberOfSpawnFeeders = 0;
 var numberOfUpgraders = 0;
 var numberOfBuilders = 1;
 var numberOfRoomClaimers = 0;
-var doBuildConstructionSites = false;
+var doBuildConstructionSites = true;
 var doRenewCreeps = false;
 var spawner = require('spawner');
 var roleHarvester = require('role.harvester');
@@ -13,6 +13,15 @@ var roleUpgrader = require('role.upgrader');
 var roleUpgradeHarvester = require('role.upgradeHarvester');
 var roleBuilder = require('role.builder');
 var roleSpawnFeeder = require('role.spawnFeeder');
+var Creeper = /** @class */ (function () {
+    function Creeper(creep) {
+        this.creep = creep;
+    }
+    Creeper.prototype.greet = function () {
+        return "Hi from, " + creep.name;
+    };
+    return Creeper;
+}());
 /*
 var roleTower = require('role.tower');
 var roleUpgraderLink = require('role.upgraderLink');
@@ -84,6 +93,8 @@ module.exports.loop = function () {
         else {
             switch (creep.memory.role) {
                 case 'harvester':
+                    var creeper = new Creeper(creep);
+                    creeper.greet();
                     roleHarvester.run(creep);
                     break;
                 case 'upgrader':

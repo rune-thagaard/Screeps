@@ -9,6 +9,8 @@ var spawnFeeder = {
             var target = functionsCreep.CheckForMissingEnergyInSpawn(creep);
             if (target) {
                 var result = functionsCreep.TransferResource(creep, target, RESOURCE_ENERGY);
+                if (result != OK)
+                    creep.say("FAIL: " + result);
                 creep.say("Transfered energy with result: " + result);
                 return;
             }
