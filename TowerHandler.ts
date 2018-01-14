@@ -1,9 +1,12 @@
 export = class TowerHandler {
 
     towers: StructureTower[];
+    maxDefenseHitPoints: number;
 
-    constructor()
+    constructor(maxDefenseHitPoints: number = 3000)
     {
+        this.maxDefenseHitPoints = maxDefenseHitPoints;
+
         this.towers = <StructureTower[]>Game.spawns['MainBase'].room.find(FIND_STRUCTURES, {
             filter: function(obj) {
                 return obj.structureType == STRUCTURE_TOWER;
@@ -44,7 +47,7 @@ export = class TowerHandler {
                     if (!targetFound) {
                         e = 0;
                         while (!targetFound && e < targets.length) {
-                            if (targets[e].structureType == STRUCTURE_RAMPART && targets[e].hits < maxHitPoints)
+                            if (targets[e].structureType == STRUCTURE_RAMPART && targets[e].hits < this.maxDefenseHitPoints)
                             {
                                 targetStructureToRepair = targets[e];
                                 targetFound = true;
@@ -56,7 +59,7 @@ export = class TowerHandler {
                     if (!targetFound) {
                         e = 0;
                         while (!targetFound && e < targets.length) {
-                            if (targets[e].structureType == STRUCTURE_WALL && targets[e].hits < maxHitPoints)
+                            if (targets[e].structureType == STRUCTURE_WALL && targets[e].hits < this.maxDefenseHitPoints)
                             {
                                 targetStructureToRepair = targets[e];
                                 targetFound = true;

@@ -1,6 +1,8 @@
 "use strict";
 module.exports = /** @class */ (function () {
-    function TowerHandler() {
+    function TowerHandler(maxDefenseHitPoints) {
+        if (maxDefenseHitPoints === void 0) { maxDefenseHitPoints = 3000; }
+        this.maxDefenseHitPoints = maxDefenseHitPoints;
         this.towers = Game.spawns['MainBase'].room.find(FIND_STRUCTURES, {
             filter: function (obj) {
                 return obj.structureType == STRUCTURE_TOWER;
@@ -31,7 +33,7 @@ module.exports = /** @class */ (function () {
                     if (!targetFound) {
                         e = 0;
                         while (!targetFound && e < targets.length) {
-                            if (targets[e].structureType == STRUCTURE_RAMPART && targets[e].hits < maxHitPoints) {
+                            if (targets[e].structureType == STRUCTURE_RAMPART && targets[e].hits < this.maxDefenseHitPoints) {
                                 targetStructureToRepair = targets[e];
                                 targetFound = true;
                             }
@@ -41,7 +43,7 @@ module.exports = /** @class */ (function () {
                     if (!targetFound) {
                         e = 0;
                         while (!targetFound && e < targets.length) {
-                            if (targets[e].structureType == STRUCTURE_WALL && targets[e].hits < maxHitPoints) {
+                            if (targets[e].structureType == STRUCTURE_WALL && targets[e].hits < this.maxDefenseHitPoints) {
                                 targetStructureToRepair = targets[e];
                                 targetFound = true;
                             }
