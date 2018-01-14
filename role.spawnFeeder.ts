@@ -49,7 +49,7 @@ var spawnFeeder = {
             var harvesterContainer = Game.getObjectById("");
 
 	        // Get energy from link
-	        if (energyStorageLink && energyStorageLink.energy > 500) {
+	        if (energyStorageLink/* && energyStorageLink.energy > 500*/) {
 	            var result = functionsCreep.WithdrawResource(creep, energyStorageLink, RESOURCE_ENERGY);
                 return;
 	        }

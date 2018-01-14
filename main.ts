@@ -16,15 +16,7 @@ var roleUpgradeHarvester = require('role.upgradeHarvester');
 var roleBuilder = require('role.builder');
 var roleSpawnFeeder = require('role.spawnFeeder');
 
-class Creeper {
-    creep: Creep;
-    constructor(creep: Creep) {
-        this.creep = creep;
-    }
-    greet() {
-        return "Hi from, " + creep.name;
-    }
-}
+
 
 /*
 var roleTower = require('role.tower');
@@ -110,8 +102,6 @@ module.exports.loop = function () {
         
             switch (creep.memory.role) {
                 case 'harvester':
-                    let creeper = new Creeper(creep);
-                    creeper.greet();
                     roleHarvester.run(creep);
                     break;
             case 'upgrader':
