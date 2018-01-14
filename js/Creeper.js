@@ -7,7 +7,7 @@ module.exports = /** @class */ (function () {
         var result = this.creep.transfer(target, resource);
         switch (result) {
             case ERR_NOT_IN_RANGE: {
-                creep.moveTo(target);
+                this.creep.moveTo(target);
                 break;
             }
             case ERR_NOT_OWNER: // -1 You are not the owner of this creep.
@@ -23,12 +23,25 @@ module.exports = /** @class */ (function () {
     };
     Creeper.prototype.harvest = function (harvestSource, targetEnergyStorage) {
         // If creeps energy capacity is empty, go harvest
-        if (this.creep.carry.energy == 0)
+        if (this.creep.carry.energy < this.creep.carryCapacity)
             if (this.creep.harvest(harvestSource) != OK)
                 this.creep.moveTo(harvestSource);
         // If creeps energy capacity is full, deliver energy to storage unit
         if (this.creep.carry.energy == this.creep.carryCapacity)
             this.transferResource(targetEnergyStorage, RESOURCE_ENERGY);
+    };
+    Creeper.prototype.build = function (doBuildConstructionSites, energySource) {
+        var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
+        if (targets.length && doBuildConstructionSites) {
+            // If creeps energy capacity is empty, get more energy
+            if (this.creep.carry.energy < this.creep.carryCapacity)
+                if (this.creep.withdraw(energySource, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                    this.creep.moveTo(energySource);
+            // If creeps energy capacity is full, go build
+            if (this.creep.carry.energy == this.creep.carryCapacity)
+                if (this.creep.build(targets[0]) != ERR_NOT_IN_RANGE)
+                    this.creep.moveTo(targets[0]);
+        }
     };
     return Creeper;
 }());

@@ -1,5 +1,3 @@
-var roleBuilder = require('role.builder');
-
 var harvesterSource = "59f1a60c82100e1594f3f6e4";
 var harvesterDestination = "5a5a44db111a065fc1c92308";
 

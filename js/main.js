@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Creeper = require("Creeper");
+var Creeper = require("./Creeper");
 var numberOfHarvesters = 1;
 var numberOfUpgradeHarvesters = 3;
 var numberOfMineralHarvester = 0;
@@ -98,7 +98,7 @@ module.exports.loop = function () {
                     roleUpgradeHarvester.run(creep);
                     break;
                 case 'builder':
-                    roleBuilder.run(creep, doBuildConstructionSites);
+                    creeper.build(doBuildConstructionSites, harvesterDestination);
                     break;
                 case 'spawnFeeder':
                     roleSpawnFeeder.run(creep);

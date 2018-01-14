@@ -2,57 +2,17 @@ var roleTowerFeeder = require('role.towerFeeder');
 var builderSource = "5a59e73d4df4166fbf201cfe";
 var roleBuilder = {
     /** @param {Creep} creep **/
-    run: function (creep, doBuildConstructionSites) {
+    run: function (creep, doBuildConstructionSites, energySource) {
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
         if (targets.length && doBuildConstructionSites) {
-            if (!creep.memory.building && creep.carry.energy > 0) {
-                creep.memory.building = true;
-            }
-            if (creep.memory.building && creep.carry.energy == 0) {
-                creep.memory.building = false;
-            }
-            if (creep.memory.building) {
-                if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+            // If creeps energy capacity is empty, get more energy
+            if (this.creep.carry.energy < this.creep.carryCapacity)
+                if (creep.withdraw(energySource, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                    creep.moveTo(energySource);
+            // If creeps energy capacity is full, go build
+            if (this.creep.carry.energy == this.creep.carryCapacity)
+                if (creep.build(targets[0]) != ERR_NOT_IN_RANGE)
                     creep.moveTo(targets[0]);
-                }
-            }
-            else {
-                var container = Game.getObjectById(builderSource);
-                var attemptTransfer = creep.withdraw(container, RESOURCE_ENERGY, creep.carryCapacity);
-                if (attemptTransfer == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(container);
-                }
-                else if (attemptTransfer == ERR_NOT_ENOUGH_RESOURCES) {
-                    if (container.energy > 0) {
-                        creep.withdraw(container, RESOURCE_ENERGY, container.energy);
-                    }
-                }
-                /*
-                var energyContainers = Memory.energyContainers.split(',');
-                
-                if (energyContainers.length > 0) {
-                    
-                    var container = null;
-                    
-                    for (var i = 0; i < energyContainers.length; i++) {
-                        var energyContainer = Game.getObjectById(energyContainers[i]);
-                        if (energyContainer.store[RESOURCE_ENERGY] > 0)
-                            container = energyContainer;
-                    }
-                    if (container != null) {
-                        var attemptTransfer = creep.withdraw(container, RESOURCE_ENERGY, creep.carryCapacity);
-                        
-                        if(attemptTransfer == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(container);
-                        } else if (attemptTransfer == ERR_NOT_ENOUGH_RESOURCES)
-                            creep.withdraw(container, RESOURCE_ENERGY, container.store[RESOURCE_ENERGY]);
-                        
-                    } else {
-                        console.log("Energy storage empty");
-                    }
-                }
-                */
-            }
         }
         else {
             // Repair structures
