@@ -33,7 +33,11 @@ module.exports = /** @class */ (function () {
             return;
         }
         // Find and fill spawn and extensions with energy
-        var target = functionsCreep.CheckForMissingEnergyInSpawn(this.creep);
+        var target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: function (structure) {
+                return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+            }
+        });
         if (target) {
             var result = this.transferResource(target, RESOURCE_ENERGY);
             if (result == OK)
@@ -134,7 +138,7 @@ module.exports = /** @class */ (function () {
         }
         var response = this.creep.upgradeController(this.creep.room.controller);
         if (response == ERR_NOT_IN_RANGE)
-            this.creep.moveTo(creep.room.controller);
+            this.creep.moveTo(this.creep.room.controller);
     };
     return Creeper;
 }());
