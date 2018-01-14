@@ -45,6 +45,10 @@ module.exports = /** @class */ (function () {
         }
     };
     Creeper.prototype.harvest = function (harvestSource, targetEnergyStorage) {
+        var droppedEnergy = this.creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
+        if (droppedEnergy.length > 0) {
+            this.creep.pickup(droppedEnergy[0]);
+        }
         // If creeps energy capacity is empty, go harvest
         if (this.creep.carry.energy < this.creep.carryCapacity)
             if (this.creep.harvest(harvestSource) != OK)
