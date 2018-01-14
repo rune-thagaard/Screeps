@@ -3,7 +3,7 @@ var numberOfUpgradeHarvesters = 3;
 var numberOfMineralHarvester = 0;
 var numberOfSpawnFeeders = 0;
 var numberOfUpgraders = 0;
-var numberOfBuilders = 0;
+var numberOfBuilders = 1;
 var numberOfRoomClaimers = 0;
 
 var doBuildConstructionSites = false;

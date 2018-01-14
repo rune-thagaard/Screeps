@@ -9,6 +9,7 @@ var spawnFeeder = {
             var target = functionsCreep.CheckForMissingEnergyInSpawn(creep);
             if (target) {
                 var result = functionsCreep.TransferResource(creep, target, RESOURCE_ENERGY);
+                creep.say("Transfered energy with result: " + result);
                 return;
             }
             // Fill towers with energy
