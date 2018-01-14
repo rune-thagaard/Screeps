@@ -27,8 +27,13 @@ module.exports = /** @class */ (function () {
             this.creep.moveTo(target);
     };
     Creeper.prototype.energyFeeder = function (energySource) {
+        if (this.creep.memory['collectResource'] && this.creep.carry.energy == this.creep.carryCapacity)
+            this.creep.memory['collectResource'] = false;
+        if (!this.creep.memory['collectResource'] && this.creep.carry.energy == 0) {
+            this.creep.memory['collectResource'] = true;
+        }
         // If creeps energy capacity is empty, get more energy
-        if (this.creep.carry.energy == 0) {
+        if (this.creep.memory['collectResource']) {
             this.withdrawResource(energySource, RESOURCE_ENERGY);
             return;
         }
@@ -44,6 +49,7 @@ module.exports = /** @class */ (function () {
                 this.creep.say("Transfered energy to spawn: " + result);
             return;
         }
+        // TODO: Tower feeder job should be put into its own. Anothe way of conrolling the switch between feeding energy to spawn and towers should be developed.
         // Check if any towers need energy
         var towers = Game.spawns['MainBase'].room.find(FIND_STRUCTURES, {
             filter: function (obj) {
@@ -74,13 +80,13 @@ module.exports = /** @class */ (function () {
                 this.creep.moveTo(harvestSource);
     };
     Creeper.prototype.build = function (doBuildConstructionSites, energySource) {
-        if (!this.creep.memory['building'] && this.creep.carry.energy > 0)
-            this.creep.memory['building'] = true;
-        if (this.creep.memory['building'] && this.creep.carry.energy == 0) {
-            this.creep.memory['building'] = false;
+        if (this.creep.memory['collectResource'] && this.creep.carry.energy == this.creep.carryCapacity)
+            this.creep.memory['collectResource'] = false;
+        if (!this.creep.memory['collectResource'] && this.creep.carry.energy == 0) {
+            this.creep.memory['collectResource'] = true;
         }
         var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
-        if (this.creep.memory['building'] && targets.length && doBuildConstructionSites) {
+        if (!this.creep.memory['collectResource'] && targets.length && doBuildConstructionSites) {
             // If creeps energy capacity is full, go build
             if (this.creep.carry.energy > 0)
                 if (this.creep.build(targets[0]) == ERR_NOT_IN_RANGE)

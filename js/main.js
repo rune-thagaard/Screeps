@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Creeper = require("./Creeper");
 var SpawnHandler = require("./SpawnHandler");
 var TowerHandler = require("./TowerHandler");
-var SpawnController = new SpawnHandler(1, 0, 1, 0, 3, 0);
+var SpawnController = new SpawnHandler(1, 0, 1, 1, 3, 0);
 var TowerController = new TowerHandler();
 var doBuildConstructionSites = true;
 var doRenewCreeps = false;

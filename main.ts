@@ -1,7 +1,7 @@
 import Creeper = require('./Creeper');
 import SpawnHandler = require("./SpawnHandler");
 import TowerHandler = require("./TowerHandler");
-let SpawnController = new SpawnHandler(1, 0, 1, 0, 3, 0);
+let SpawnController = new SpawnHandler(1, 0, 1, 1, 3, 0);
 let TowerController = new TowerHandler();
 
 var doBuildConstructionSites = true;
