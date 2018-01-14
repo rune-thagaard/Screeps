@@ -59,19 +59,25 @@ export = class Creeper {
 
     harvest(harvestSource: Mineral, targetEnergyStorage: Structure)
     {
-        const droppedEnergy: Resource[] = this.creep.pos.findInRange(FIND_DROPPED_ENERGY, 1);
-        if(droppedEnergy.length > 0) {
-            this.creep.pickup(droppedEnergy[0]);
+        // If creeps energy capacity is full, deliver energy to storage unit
+        if (this.creep.carry.energy == this.creep.carryCapacity)
+        {
+            this.transferResource(targetEnergyStorage, RESOURCE_ENERGY);
+            return;
+        }
+
+        // If any dropped energy is within range, pick it up.
+        var droppedEnergy = this.creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
+        if (droppedEnergy.length > 0) {
+            var result = this.creep.pickup(droppedEnergy[0]);
+            console.log("Picked up energy with result: "+ result);
+            return;
         }
 
         // If creeps energy capacity is empty, go harvest
-        if(this.creep.carry.energy < this.creep.carryCapacity)
-            if(this.creep.harvest(harvestSource) != OK)
+        if (this.creep.carry.energy < this.creep.carryCapacity)
+            if (this.creep.harvest(harvestSource) != OK)
                 this.creep.moveTo(harvestSource);
-
-        // If creeps energy capacity is full, deliver energy to storage unit
-        if(this.creep.carry.energy == this.creep.carryCapacity)
-            this.transferResource(targetEnergyStorage, RESOURCE_ENERGY);
     }
 
     build(doBuildConstructionSites: boolean, energySource: Structure)
