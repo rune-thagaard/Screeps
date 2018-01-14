@@ -71,8 +71,16 @@ export = class Creeper {
 
     build(doBuildConstructionSites: boolean, energySource: Structure)
     {
+        if(!this.creep.memory.building && creep.carry.energy > 0) {
+            this.creep.memory.building = true;
+        }
+
+        if(this.creep.memory.building && creep.carry.energy == 0) {
+            this.creep.memory.building = false;
+        }
+
         var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
-        if(targets.length && doBuildConstructionSites) {
+        if(this.creep.memory.building && targets.length && doBuildConstructionSites) {
 
             // If creeps energy capacity is empty, get more energy
             if(this.creep.carry.energy < this.creep.carryCapacity)
