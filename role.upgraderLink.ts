@@ -2,8 +2,8 @@ var upgraderLink = {
     
     run: function() {
         
-        var originLink = Game.getObjectById('027b33b340b294c');
-        var targetLink = Game.getObjectById('d5dd32eead2962a');
+        let originLink: StructureLink = Game.getObjectById('027b33b340b294c');
+        let targetLink: StructureLink = Game.getObjectById('d5dd32eead2962a');
         
         var result = originLink.transferEnergy(targetLink, targetLink.energyCapacity - targetLink.energy);
         

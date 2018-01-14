@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var towerFeederSource = "fde480b7fc7b52d";
 var towerFeederDestination = "5e023cf9fc4ea90";
 var roleTowerFeeder = {

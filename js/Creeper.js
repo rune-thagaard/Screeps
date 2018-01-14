@@ -54,14 +54,14 @@ module.exports = /** @class */ (function () {
             this.transferResource(targetEnergyStorage, RESOURCE_ENERGY);
     };
     Creeper.prototype.build = function (doBuildConstructionSites, energySource) {
-        if (!this.creep.memory.building && creep.carry.energy > 0) {
-            this.creep.memory.building = true;
+        if (!this.creep.memory['building'] && this.creep.carry.energy > 0) {
+            this.creep.memory['building'] = true;
         }
-        if (this.creep.memory.building && creep.carry.energy == 0) {
-            this.creep.memory.building = false;
+        if (this.creep.memory['building'] && this.creep.carry.energy == 0) {
+            this.creep.memory['building'] = false;
         }
         var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
-        if (this.creep.memory.building && targets.length && doBuildConstructionSites) {
+        if (this.creep.memory['building'] && targets.length && doBuildConstructionSites) {
             // If creeps energy capacity is empty, get more energy
             if (this.creep.carry.energy < this.creep.carryCapacity)
                 this.withdrawResource(energySource, RESOURCE_ENERGY);

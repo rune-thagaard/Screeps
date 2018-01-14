@@ -78,19 +78,19 @@ module.exports.loop = function () {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
 
-        if (creep.ticksToLive < 150 && !creep.memory.needHealing)
-            creep.memory.needHealing = true;
+        if (creep.ticksToLive < 150 && !creep.memory['needHealing'])
+            creep.memory['needHealing'] = true;
         
-        if (creep.ticksToLive > 1400 && creep.memory.needHealing)
-            creep.memory.needHealing = false;
+        if (creep.ticksToLive > 1400 && creep.memory['needHealing'])
+            creep.memory['needHealing'] = false;
         
-        if (creep.memory.needHealing && doRenewCreeps)
+        if (creep.memory['needHealing'] && doRenewCreeps)
             creep.moveTo(Game.spawns.Spawn1);
         else {
 
             let creeper = new Creeper(creep);
 
-            switch (creep.memory.role) {
+            switch (creep.memory['role']) {
                 case 'harvester':
                     creeper.harvest(harvesterSource, harvesterDestination);
                     break;

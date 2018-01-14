@@ -6,7 +6,7 @@ var roleTower = {
     /** @param {Creep} creep **/
     run: function() {
         
-        var tower = Game.getObjectById('5e023cf9fc4ea90');
+        var tower: StructureTower = Game.getObjectById('5e023cf9fc4ea90');
         
         if(tower) {
             
@@ -65,7 +65,7 @@ var roleTower = {
                 } else {
                     
                     // Check if any creeps need healing
-                    var targets = tower.room.find(FIND_MY_CREEPS, {
+                    let targets: Creep[] = tower.room.find(FIND_MY_CREEPS, {
                         filter: function(object) {
                             return object.hits < object.hitsMax;
                         }
@@ -139,7 +139,7 @@ var roleTower = {
                 } else {
                     
                     // Check if any creeps need healing
-                    var targets = tower.room.find(FIND_MY_CREEPS, {
+                    let targets: Creep[] = tower.room.find(FIND_MY_CREEPS, {
                         filter: function(object) {
                             return object.hits < object.hitsMax;
                         }

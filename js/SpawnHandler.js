@@ -20,8 +20,8 @@ module.exports = /** @class */ (function () {
             var result = spawn.renewCreep(creepsToRenew[0]);
             if (result == OK)
                 return true;
-            else if (result == ERR_NOT_ENOUGH_ENERGY && creepsToRenew[0].memory.role == 'spawnFeeder') {
-                creepsToRenew[0].memory.needHealing = false;
+            else if (result == ERR_NOT_ENOUGH_ENERGY && creepsToRenew[0].memory['role'] == 'spawnFeeder') {
+                creepsToRenew[0].memory['needHealing'] = false;
             }
         }
         return false;

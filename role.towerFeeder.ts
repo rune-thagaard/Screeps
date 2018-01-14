@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var towerFeederSource = "fde480b7fc7b52d";
 var towerFeederDestination = "5e023cf9fc4ea90";
 
@@ -8,9 +9,9 @@ var roleTowerFeeder = {
         
         
         // Fill tower with energy
-        var tower = Game.getObjectById(towerFeederDestination);
+        let tower: StructureTower = Game.getObjectById(towerFeederDestination);
         
-        var tower2 = Game.getObjectById('5dad3f9a248e49e');
+        let tower2: StructureTower = Game.getObjectById('5dad3f9a248e49e');
         /*
         // Make sure to empty creeps storage, if there are non-energy present
         var creepTotalCarry = _.sum(creep.carry);

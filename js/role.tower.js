@@ -48,13 +48,13 @@ var roleTower = {
                 }
                 else {
                     // Check if any creeps need healing
-                    var targets = tower.room.find(FIND_MY_CREEPS, {
+                    var targets_1 = tower.room.find(FIND_MY_CREEPS, {
                         filter: function (object) {
                             return object.hits < object.hitsMax;
                         }
                     });
-                    if (targets.length) {
-                        tower.heal(targets[0]);
+                    if (targets_1.length) {
+                        tower.heal(targets_1[0]);
                     }
                 }
             }
@@ -105,13 +105,13 @@ var roleTower = {
                 }
                 else {
                     // Check if any creeps need healing
-                    var targets = tower.room.find(FIND_MY_CREEPS, {
+                    var targets_2 = tower.room.find(FIND_MY_CREEPS, {
                         filter: function (object) {
                             return object.hits < object.hitsMax;
                         }
                     });
-                    if (targets.length) {
-                        tower.heal(targets[0]);
+                    if (targets_2.length) {
+                        tower.heal(targets_2[0]);
                     }
                 }
             }
