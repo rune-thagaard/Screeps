@@ -40,8 +40,8 @@ var spawnFeeder = {
             
 	    } else {
 	        
-            var energyStorageLink = Game.getObjectById("d5dd32eead2962a");
-            var harvesterContainer = Game.getObjectById("5b662f1ee3b1a96");
+            var energyStorageLink = Game.getObjectById("5a5a44db111a065fc1c92308");
+            var harvesterContainer = Game.getObjectById("");
 
 	        // Get energy from link
 	        if (energyStorageLink && energyStorageLink.energy > 500) {

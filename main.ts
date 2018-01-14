@@ -117,14 +117,15 @@ module.exports.loop = function () {
             case 'repairer':
                 roleRepairer.run(creep);
                 break;
-
+            /*
             case 'dismantler':
                 roleDismantler.run(creep);
                 break;
 
             case 'mineralHarvester':
                 roleMineralHarvester.run(creep, mineralSource1, mineralStorage);
-                break;*/
+                break;
+            */
             }
         
         }
