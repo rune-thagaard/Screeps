@@ -23,6 +23,7 @@ module.exports = /** @class */ (function () {
         return result;
     };
     Creeper.prototype.withdrawResource = function (target, resource) {
+        var test = target;
         if (this.creep.withdraw(target, resource) == ERR_NOT_IN_RANGE)
             this.creep.moveTo(target);
     };

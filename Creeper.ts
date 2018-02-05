@@ -29,6 +29,7 @@ export = class Creeper {
 
     withdrawResource(target: Structure, resource: ResourceConstant)
     {
+        let test: Structure = target;
         if(this.creep.withdraw(target, resource) == ERR_NOT_IN_RANGE)
             this.creep.moveTo(target);
     }

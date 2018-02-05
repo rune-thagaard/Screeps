@@ -1,3 +1,4 @@
+let _ = require('lodash');
 import Creeper = require('./Creeper');
 import SpawnHandler = require("./SpawnHandler");
 import TowerHandler = require("./TowerHandler");
@@ -7,13 +8,16 @@ let mainBase: string = "MainBase";
 
 // Whether or not to build structures.
 // This can be used to limit the amount of resources used on building in the early game
+// TODO: Add a method to check for current room energy and based on that decide whether or not to build.
 let doBuildConstructionSites: boolean = true;
 
+// TODO: Numbers below go fine for early game - When they creeps get to a decent size (when having 20 extension) it is not required with several upgraders.
 // Spawn controller - Amount of units created can be controlled through inputs given here.
-let SpawnController = new SpawnHandler(1, 0, 1, 1, 3, 0);
+//let SpawnController = new SpawnHandler(1, 0, 1, 1, 3, 0);
+let SpawnController = new SpawnHandler(1, 0, 1, 1, 2, 0);
 
 // Tower controller - Provice value for maxDefenseHitPoints to repair for walls and ramparts to prevent huge amounts of energy to be wasted on strengthen ramparts and walls.
-let TowerController = new TowerHandler(3000);
+let TowerController = new TowerHandler(35000);
 
 // Only renew creeps if room controller is above level 3
 let doRenewCreeps: boolean = (Game.spawns[mainBase].room.controller.level > 3);
@@ -83,6 +87,10 @@ module.exports.loop = function () {
     if (Game.rooms.length == 0)
         Game.spawns.Spawn1.createCreep([WORK,CARRY,CARRY,MOVE,MOVE], undefined, {role: "spawnFeeder"});
     */
+
+    if (_.sum(Game.creeps, (c) => c == c) < 3)
+        Game.notify("Creeps are vanishing!!!");
+
     // Command creeps
     for(let name in Game.creeps) {
         let creep: Creep = Game.creeps[name];

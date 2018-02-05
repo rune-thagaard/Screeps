@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require('lodash');
 var Creeper = require("./Creeper");
 var SpawnHandler = require("./SpawnHandler");
 var TowerHandler = require("./TowerHandler");
@@ -7,11 +8,14 @@ var TowerHandler = require("./TowerHandler");
 var mainBase = "MainBase";
 // Whether or not to build structures.
 // This can be used to limit the amount of resources used on building in the early game
+// TODO: Add a method to check for current room energy and based on that decide whether or not to build.
 var doBuildConstructionSites = true;
+// TODO: Numbers below go fine for early game - When they creeps get to a decent size (when having 20 extension) it is not required with several upgraders.
 // Spawn controller - Amount of units created can be controlled through inputs given here.
-var SpawnController = new SpawnHandler(1, 0, 1, 1, 3, 0);
+//let SpawnController = new SpawnHandler(1, 0, 1, 1, 3, 0);
+var SpawnController = new SpawnHandler(1, 0, 1, 1, 2, 0);
 // Tower controller - Provice value for maxDefenseHitPoints to repair for walls and ramparts to prevent huge amounts of energy to be wasted on strengthen ramparts and walls.
-var TowerController = new TowerHandler(3000);
+var TowerController = new TowerHandler(35000);
 // Only renew creeps if room controller is above level 3
 var doRenewCreeps = (Game.spawns[mainBase].room.controller.level > 3);
 // TODO: Find these automatically instead of through hardcoded id's
@@ -70,6 +74,8 @@ module.exports.loop = function () {
     if (Game.rooms.length == 0)
         Game.spawns.Spawn1.createCreep([WORK,CARRY,CARRY,MOVE,MOVE], undefined, {role: "spawnFeeder"});
     */
+    if (_.sum(Game.creeps, function (c) { return c == c; }) < 3)
+        Game.notify("Creeps are vanishing!!!");
     // Command creeps
     for (var name_1 in Game.creeps) {
         var creep = Game.creeps[name_1];
