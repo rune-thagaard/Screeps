@@ -129,6 +129,29 @@ module.exports.loop = function () {
                 case 'dismantler':
                     creeper.dismantle(harvesterDestination);
                     break;
+                case 'attacker':
+                    const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+
+                    /*if (creep.pos.x != 27 && creep.pos.y != 17)
+                    {
+                        creep.moveTo(27, 17);
+                    }
+                    else
+                    {*/
+                    if(target)
+                    {
+                        var result = creep.rangedAttack(target);
+                        if(result == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(target);
+                            console.log("Out of range - move closer to target!");
+                        }
+                        else
+                        {
+                            console.log(result);
+                        }
+                    }
+                    //}
+                    break;
                 case 'mineralHarvester':
                     creeper.mineralHarvest(mineralSource1, mineralStorage);
                     break;
